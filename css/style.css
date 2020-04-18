@@ -6,3 +6,128 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+/* universial selector */
+* {
+    margin: 0;
+    padding: 0;
+    /* box-sizing makes the borders and the paddings are no longer added to the total width or the total height */
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #777;
+    padding: 20px;
+}
+
+.header {
+    height: 95vh;
+    background-image: linear-gradient(to right bottom, #7ed56fcb, #28b485cb), url(../img/hero.jpg);
+    /* whatever the width of the viewport, or the element, it'll always try to fit the element inside of the box. */
+    background-size: cover;
+    /* when the screen change, the top of the image stay same, and others crop */
+    background-position: top;
+    position: relative;
+
+    /* crop from top-left, top-right, bottom-rignt, bottom-left*/
+    /* https://bennettfeely.com/clippy/ */
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+}
+
+.logo-box {
+    /* need parent position to relative */
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+.logo {
+    height: 35px;
+}
+
+.text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* the relation of transform is the element itself, and make the element is exactly at the center */
+    transform: translate(-50%, -50%);
+}
+
+.heading-primary {
+    color: #ffffff;
+    text-transform: uppercase;
+
+    /* determines if the back part of the element when we transform it, this can fix animation shaking */
+    backface-visibility: hidden;
+}
+
+.heading-primary-main {
+    /* display it as a block */
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
+
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+
+    /* 
+    animation-iteration-count: 3;
+    animation-delay: 1s; 
+    */
+}
+
+.heading-primary-sub {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 17.4px;
+
+    animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+    /* start at 0 */
+    0% {
+        opacity: 0;
+        /* positive value means it goes to the right, negative goes to left */
+        transform: translateX(-100px) rotate(-50deg);
+    }
+
+    /* 60% {
+        transform: rotate(120deg);
+    } */
+
+    80% {
+        transform: translateX(10px);
+    }
+
+    /* end at 100 */
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    /* start at 0 */
+    0% {
+        opacity: 0;
+        /* positive value means it goes to the right, negative goes to left */
+        transform: translateX(100px);
+    }
+
+    80% {
+        transform: translateX(-10px);
+    }
+
+    /* end at 100 */
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
