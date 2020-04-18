@@ -54,6 +54,7 @@ body {
     left: 50%;
     /* the relation of transform is the element itself, and make the element is exactly at the center */
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .heading-primary {
@@ -62,6 +63,7 @@ body {
 
     /* determines if the back part of the element when we transform it, this can fix animation shaking */
     backface-visibility: hidden;
+    margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -130,4 +132,85 @@ body {
         opacity: 1;
         transform: translate(0);
     }
+}
+
+@keyframes moveInBottom {
+    /* start at 0 */
+    0% {
+        opacity: 0;
+        /* positive value means it goes to the right, negative goes to left */
+        transform: translateY(30px);
+    }
+
+    /* end at 100 */
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+/* link pseudo clases, a special state of a selector */
+.btn:link,
+/* visited state, the state when the user has already clicked */
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;
+    /* should always do this when we have paddings or width to elements */
+    display: inline-block;
+    border-radius: 100px;
+    /* specify all porperties to animate */
+    transition: all 0.2s;
+    position: relative;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* when button is been clicked */
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+    background-color: #ffffff;
+    color: #777;
+}
+
+/* 
+ * after pseudo-element, add an element that looks exactly like the button that we already have, but put it behind the button
+ * And when we hover out of the button, then this hidden pseudo-element amazingly goes back behind the button.
+ */
+.btn::after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    /* this absolute positioning needs to have a reference, which is the first element with the relative position that it can find .*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* position of the elements if they are one on top of another. */
+    z-index: -1;
+    transition: all, 0.4s;
+}
+
+.btn-white::after {
+    background-color: #fff;
+}
+
+/* So this is an after pseudo-element only when we have the button on the hover state. */
+.btn:hover::after {
+    transform: scaleX(1.6) scaleY(1.4);
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: moveInBottom 0.5s ease-out 0.7s;
+    /* it will automatically apply the styles up to zero percent before the animation starts. */
+    animation-fill-mode: backwards;
 }
