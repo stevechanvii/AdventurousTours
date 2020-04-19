@@ -211,6 +211,6 @@ body {
 
 .btn-animated {
     animation: moveInBottom 0.5s ease-out 0.7s;
-    /* it will automatically apply the styles up to zero percent before the animation starts. */
+    /* it will automatically apply the styles up to zero percent before the animation starts. Othervise it will show in the initial stage */
     animation-fill-mode: backwards;
 }
