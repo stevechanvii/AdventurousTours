@@ -7,20 +7,29 @@ Dark green: #28b485
 
 */
 /* universial selector */
-* {
+*,
+*::after,
+*::before {
     margin: 0;
     padding: 0;
-    /* box-sizing makes the borders and the paddings are no longer added to the total width or the total height */
-    box-sizing: border-box;
+    box-sizing: inherit;
+}
+
+html {
+    /* 10/16px */
+    font-size: 62.5%;
 }
 
 body {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    /* font-size: 16px; */
     line-height: 1.7;
     color: #777;
-    padding: 20px;
+    padding: 3rem;
+
+    /* box-sizing makes the borders and the paddings are no longer added to the total width or the total height */
+    box-sizing: border-box;
 }
 
 .header {
@@ -37,18 +46,18 @@ body {
     clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
 }
 
-.logo-box {
+.header__logo-box {
     /* need parent position to relative */
     position: absolute;
-    top: 40px;
-    left: 40px;
+    top: 4rem;
+    left: 4rem;
 }
 
-.logo {
-    height: 35px;
+.header__logo {
+    height: 3.5rem;
 }
 
-.text-box {
+.header__text-box {
     position: absolute;
     top: 40%;
     left: 50%;
@@ -63,15 +72,15 @@ body {
 
     /* determines if the back part of the element when we transform it, this can fix animation shaking */
     backface-visibility: hidden;
-    margin-bottom: 60px;
+    margin-bottom: 6rem;
 }
 
-.heading-primary-main {
+.heading-primary--main {
     /* display it as a block */
     display: block;
-    font-size: 60px;
+    font-size: 6rem;
     font-weight: 400;
-    letter-spacing: 35px;
+    letter-spacing: 3.5rem;
 
     animation-name: moveInLeft;
     animation-duration: 1s;
@@ -83,11 +92,11 @@ body {
     */
 }
 
-.heading-primary-sub {
+.heading-primary--sub {
     display: block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 17.4px;
+    letter-spacing: 1.75rem;
 
     animation: moveInRight 1s ease-out;
 }
@@ -97,7 +106,7 @@ body {
     0% {
         opacity: 0;
         /* positive value means it goes to the right, negative goes to left */
-        transform: translateX(-100px) rotate(-50deg);
+        transform: translateX(-10rem) rotate(-50deg);
     }
 
     /* 60% {
@@ -105,7 +114,7 @@ body {
     } */
 
     80% {
-        transform: translateX(10px);
+        transform: translateX(1rem);
     }
 
     /* end at 100 */
@@ -120,11 +129,11 @@ body {
     0% {
         opacity: 0;
         /* positive value means it goes to the right, negative goes to left */
-        transform: translateX(100px);
+        transform: translateX(10rem);
     }
 
     80% {
-        transform: translateX(-10px);
+        transform: translateX(-1rem);
     }
 
     /* end at 100 */
@@ -139,7 +148,7 @@ body {
     0% {
         opacity: 0;
         /* positive value means it goes to the right, negative goes to left */
-        transform: translateY(30px);
+        transform: translateY(3rem);
     }
 
     /* end at 100 */
@@ -155,27 +164,28 @@ body {
 .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 15px 40px;
+    padding: 1.5rem 4rem;
     /* should always do this when we have paddings or width to elements */
     display: inline-block;
-    border-radius: 100px;
+    border-radius: 10rem;
     /* specify all porperties to animate */
     transition: all 0.2s;
     position: relative;
+    font-size: 1.6rem;
 }
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 /* when button is been clicked */
 .btn:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 1rem rgba(0, 0, 0, 0.2);
 }
 
-.btn-white {
+.btn--white {
     background-color: #ffffff;
     color: #777;
 }
@@ -189,7 +199,7 @@ body {
     display: inline-block;
     height: 100%;
     width: 100%;
-    border-radius: 100px;
+    border-radius: 10rem;
     /* this absolute positioning needs to have a reference, which is the first element with the relative position that it can find .*/
     position: absolute;
     top: 0;
@@ -199,18 +209,39 @@ body {
     transition: all, 0.4s;
 }
 
-.btn-white::after {
+.btn--white::after {
     background-color: #fff;
 }
 
 /* So this is an after pseudo-element only when we have the button on the hover state. */
 .btn:hover::after {
-    transform: scaleX(1.6) scaleY(1.4);
+    transform: scaleX(1.4) scaleY(1.2);
     opacity: 0;
 }
 
-.btn-animated {
+.btn--animated {
     animation: moveInBottom 0.5s ease-out 0.7s;
     /* it will automatically apply the styles up to zero percent before the animation starts. Othervise it will show in the initial stage */
     animation-fill-mode: backwards;
 }
+
+/* @media (max-width: 800px) {
+    html {
+        font-size: 9px;
+    }
+}
+@media (max-width: 720px) {
+    html {
+        font-size: 7px;
+    }
+}
+@media (max-width: 420px) {
+    html {
+        font-size: 5px;
+    }
+}
+@media (max-width: 321px) {
+    html {
+        font-size: 4px;
+    }
+} */
