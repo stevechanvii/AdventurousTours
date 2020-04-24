@@ -1,0 +1,69 @@
+.btn {
+    /* link pseudo clases, a special state of a selector */
+    &:link,
+    /* visited state, the state when the user has already clicked */
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        /* should always do this when we have paddings or width to elements */
+        display: inline-block;
+        border-radius: 10rem;
+        /* specify all porperties to animate */
+        transition: all 0.2s;
+        position: relative;
+        font-size: 1.6rem;
+    }
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+        /* So this is an after pseudo-element only when we have the button on the hover state. */
+        &::after {
+            transform: scaleX(1.4) scaleY(1.2);
+            opacity: 0;
+        }
+    }
+
+    /* when button is been clicked */
+    &:active {
+        transform: translateY(-1px);
+        box-shadow: 0 5px 1rem rgba($color-black, 0.2);
+    }
+
+    &--white {
+        background-color: $color-white;
+        color: $color-grey-dark;
+
+        &::after {
+            background-color: #fff;
+        }
+    }
+
+    /* 
+    * after pseudo-element, add an element that looks exactly like the button that we already have, but put it behind the button
+    * And when we hover out of the button, then this hidden pseudo-element amazingly goes back behind the button.
+    */
+    &::after {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        /* this absolute positioning needs to have a reference, which is the first element with the relative position that it can find .*/
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* position of the elements if they are one on top of another. */
+        z-index: -1;
+        transition: all, 0.4s;
+    }
+
+    &--animated {
+        animation: moveInBottom 0.5s ease-out 0.7s;
+
+        /* it will automatically apply the styles up to zero percent before the animation starts. Othervise it will show in the initial stage */
+        animation-fill-mode: backwards;
+    }
+}

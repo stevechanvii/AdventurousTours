@@ -1,0 +1,17 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    /* 10/16px */
+    font-size: 62.5%;
+}
+
+body {
+    /* box-sizing makes the borders and the paddings are no longer added to the total width or the total height */
+    box-sizing: border-box;
+}
