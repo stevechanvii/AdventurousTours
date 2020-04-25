@@ -1,6 +1,5 @@
 .row {
     max-width: $grid-width;
-    background-color: #eee;
     margin: 0 auto;
 
     // select everything except the last child
@@ -12,7 +11,6 @@
 
     // select all the class that start with col- attribute, * contain, $ end
     [class^='col-'] {
-        background-color: orangered;
         float: left;
         padding: 1em;
 
