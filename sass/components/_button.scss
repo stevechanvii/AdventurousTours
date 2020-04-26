@@ -41,6 +41,15 @@
         }
     }
 
+    &--green {
+        background-color: $color-primary;
+        color: $color-white;
+
+        &::after {
+            background-color: $color-primary-light;
+        }
+    }
+
     /* 
     * after pseudo-element, add an element that looks exactly like the button that we already have, but put it behind the button
     * And when we hover out of the button, then this hidden pseudo-element amazingly goes back behind the button.
