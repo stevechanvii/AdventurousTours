@@ -1,3 +1,19 @@
+/*
+0 - 600px: phone
+600-900px: tablet portait
+900-1200: tablet landscape
+1200-1800: normal style
+1800px: Big desktop
+
+$breakpoint argument choices:
+- pohone
+- tab-port
+- tabl-land
+- big-desktop
+
+1em = 16px
+this will convert to pixels and will be adopted to the font size that the user set for the browser.
+*/
 *,
 *::after,
 *::before {
@@ -6,8 +22,17 @@
   box-sizing: inherit; }
 
 html {
-  /* defint what 1 rem is: 10/16px */
+  /* defint what 1 rem is: 10/16px, so 62.5% */
   font-size: 62.5%; }
+  @media (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+  @media (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
 
 body {
   /* box-sizing makes the borders and the paddings are no longer added to the total width or the total height */
